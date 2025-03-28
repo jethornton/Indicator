@@ -182,9 +182,9 @@ class main(QMainWindow):
 		button.update()
 		if button.objectName() == 'estop_pb':
 			if button.isChecked():
-				self.power_pb.setChecked(True)
+				self.power_pb.setEnabled(True)
 			else:
-				self.power_pb.setChecked(False)
+				self.power_pb.setEnabled(False)
 
 
 app = QApplication(sys.argv)
