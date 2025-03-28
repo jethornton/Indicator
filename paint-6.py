@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
-from PyQt5.QtGui import QRadialGradient, QPainter, QColor, QBrush, QPainter
-from PyQt5.QtCore import Qt, pyqtProperty, QPointF
+from PyQt6.QtWidgets import QMainWindow, QApplication, QPushButton
+from PyQt6.QtGui import QRadialGradient, QPainter, QColor, QBrush, QPainter
+from PyQt6.QtCore import Qt, pyqtProperty, QPointF
 import sys
 
 
@@ -30,7 +30,7 @@ class MyQPushButton(QPushButton):
 		gradient = QRadialGradient(x + diameter / 2, y + diameter / 2,
 			diameter * 0.4, diameter * 0.4, diameter * 0.4)
 		gradient.setColorAt(0, Qt.GlobalColor.white)
-		painter.setRenderHint(QPainter.Antialiasing, True)
+		painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
 
 		if self._led:
 			gradient.setColorAt(1, on_color)

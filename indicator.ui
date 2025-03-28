@@ -32,15 +32,27 @@
          <property name="indicator" stdset="0">
           <bool>true</bool>
          </property>
+         <property name="diameter" stdset="0">
+          <number>10</number>
+         </property>
         </widget>
        </item>
        <item row="1" column="0">
         <widget class="QPushButton" name="power_pb">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Power</string>
          </property>
          <property name="checkable">
           <bool>true</bool>
+         </property>
+         <property name="indicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="diameter" stdset="0">
+          <number>20</number>
          </property>
         </widget>
        </item>
@@ -53,31 +65,20 @@
        <string>Info</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>width</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="event_width">
-         <property name="text">
-          <string>TextLabel</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QPushButton" name="print_children_pb">
          <property name="text">
-          <string>height</string>
+          <string>Print Children</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QLabel" name="event_height">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton">
          <property name="text">
-          <string>TextLabel</string>
+          <string>PushButton</string>
+         </property>
+         <property name="indicator" stdset="0">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
