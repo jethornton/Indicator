@@ -4,7 +4,7 @@ import sys, os
 
 from PyQt6.QtCore import Qt, pyqtProperty, QPointF, QEvent
 from PyQt6.QtGui import QRadialGradient, QPainter, QColor, QBrush, QPainter
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QWidget
 from PyQt6 import uic
 
 class IndicatorButton(QPushButton):
@@ -123,7 +123,7 @@ class main(QMainWindow):
 					layout.addWidget(self.button, row, column, rowspan, columnspan)
 					child.deleteLater()
 					#print(button.dynamicPropertyNames())
-					print(self.button.parent())
+					#print(self.button.parent())
 
 		self.power_pb.setEnabled(False)
 
@@ -181,15 +181,16 @@ class main(QMainWindow):
 		#print(f'{button.objectName()} {button.isChecked()}')
 		button.update()
 		if button.objectName() == 'estop_pb':
-			for child in self.findChildren(QPushButton):
-				print(child.objectName(), child)
-
-			'''
+			#for child in self.findChildren(QPushButton):
+			#	print(child.objectName(), child)
+			power_pb = self.findChild(QWidget, 'power_pb')
+			print(power_pb)
 			if button.isChecked():
-				self.power_pb.setEnabled(True)
+				power_pb.setEnabled(True)
 			else:
-				self.power_pb.setEnabled(False)
-			'''
+				power_pb.setEnabled(False)
+				power_pb.setChecked(False)
+
 
 
 app = QApplication(sys.argv)
