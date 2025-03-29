@@ -122,38 +122,17 @@ class main(QMainWindow):
 						self.button.released.connect(self.released)
 					layout.addWidget(self.button, row, column, rowspan, columnspan)
 					child.deleteLater()
-					#print(button.dynamicPropertyNames())
-					#print(self.button.parent())
+					if name == 'power_pb':
+						# reassign the new button to the old button
+						self.power_pb = self.findChild(IndicatorButton, 'power_pb')
+						self.power_pb.setEnabled(False)
 
-		self.power_pb.setEnabled(False)
-
-				#layout.addWidget(index, replacement)
-
-				#child = IndicatorButton()
-				#child.installEventFilter(self)
-				#print(child.parent())
-				#print(layout)
-				#print(layout.count())
-				#print(index)
-				#	print(row, column, rowspan, columnspan)
-				#layout.addWidget(IndicatorButton('OFF'), row, column, rowspan, columnspan)
-				#layout.replaceWidget(child, replacement)
-				#print(child.parent().layout().getItemPosition())
-				#replacement = IndicatorButton("OFF", self)
-
-				#child = replacement
-				#child.parent().layout().replaceWidget(child, replacement)
-				#layout.replaceWidget(original_button, custom_button)
-
-		#self.estop_pb.toggled.connect(self.indicator)
 		self.power_pb.toggled.connect(self.indicator)
 		self.quit_pb.released.connect(self.close)
-
 
 		with open('style.qss','r') as fh:
 			self.setStyleSheet(fh.read())
 		self.show()
-
 
 	def print_children(self):
 		print('Chilren')
@@ -177,21 +156,13 @@ class main(QMainWindow):
 				button.led = True
 			else:
 				button.led = False
-		#print(f'has led property {hasattr(button, "led")}')
-		#print(f'{button.objectName()} {button.isChecked()}')
 		button.update()
 		if button.objectName() == 'estop_pb':
-			#for child in self.findChildren(QPushButton):
-			#	print(child.objectName(), child)
-			power_pb = self.findChild(QWidget, 'power_pb')
-			print(power_pb)
 			if button.isChecked():
-				power_pb.setEnabled(True)
+				self.power_pb.setEnabled(True)
 			else:
-				power_pb.setEnabled(False)
-				power_pb.setChecked(False)
-
-
+				self.power_pb.setEnabled(False)
+				self.power_pb.setChecked(False)
 
 app = QApplication(sys.argv)
 gui = main()
