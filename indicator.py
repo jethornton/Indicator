@@ -181,10 +181,15 @@ class main(QMainWindow):
 		#print(f'{button.objectName()} {button.isChecked()}')
 		button.update()
 		if button.objectName() == 'estop_pb':
+			for child in self.findChildren(QPushButton):
+				print(child.objectName(), child)
+
+			'''
 			if button.isChecked():
 				self.power_pb.setEnabled(True)
 			else:
 				self.power_pb.setEnabled(False)
+			'''
 
 
 app = QApplication(sys.argv)
