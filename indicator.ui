@@ -35,6 +35,12 @@
          <property name="diameter" stdset="0">
           <number>10</number>
          </property>
+         <property name="right_offset" stdset="0">
+          <number>10</number>
+         </property>
+         <property name="top_offset" stdset="0">
+          <number>10</number>
+         </property>
         </widget>
        </item>
        <item row="1" column="0">
@@ -53,6 +59,12 @@
          </property>
          <property name="diameter" stdset="0">
           <number>20</number>
+         </property>
+         <property name="right_offset" stdset="0">
+          <number>10</number>
+         </property>
+         <property name="top_offset" stdset="0">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -99,6 +111,29 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="title">
+       <string>GroupBox</string>
+      </property>
+      <widget class="QPushButton" name="no_layout_pb">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>87</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>NL</string>
+       </property>
+       <property name="indicator" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
