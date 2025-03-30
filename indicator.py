@@ -2,8 +2,11 @@
 
 import sys, os
 
+# disable cache usage must be before any local imports
+sys.dont_write_bytecode = True
+
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
-from PyQt6.QtWidgets import QGridLayout
+from PyQt6.QtWidgets import QGridLayout, QVBoxLayout, QHBoxLayout
 from PyQt6 import uic
 
 import led
@@ -31,12 +34,12 @@ class main(QMainWindow):
 				right_offset = child.property('right_offset') or 5
 				top_offset = child.property('top_offset') or 5
 
-				print(f'child {child.objectName()}')
+				#print(f'child {child.objectName()}')
 				#print(f'diameter {diameter}')
 				#print(f'right_offset {right_offset}')
 				#print(f'top_offset {top_offset}')
 
-				button = led.IndicatorButton(text, diameter, right_offset, top_offset)
+				new_button = led.IndicatorButton(text, diameter, right_offset, top_offset)
 				# determine layout or not
 				layout = child.parent().layout()
 				if layout:
@@ -45,12 +48,22 @@ class main(QMainWindow):
 					if index != -1:
 						if isinstance(layout, QGridLayout):
 							row, column, rowspan, columnspan = layout.getItemPosition(index)
-							layout.addWidget(button, row, column, rowspan, columnspan)
-							child.deleteLater()
-							setattr(self, name, button)
+							layout.addWidget(new_button, row, column, rowspan, columnspan)
+						elif isinstance(layout, (QVBoxLayout, QHBoxLayout)):
+							layout.removeWidget(child)
+							layout.insertWidget(index, new_button)
 				else:
 					geometry = child.geometry()
+					#print(f'geometry of {name} {geometry}')
+					child_parent = child.parent()
+					#print(f'child_parent of {name} {child_parent}')
+					new_button.setParent(child_parent)
+					new_button.setGeometry(geometry)
+					#new_button.show()
 					#print(f'{child.objectName()} geometry {geometry}')
+				child.deleteLater()
+				new_button.setObjectName(name)
+				setattr(self, name, new_button) # give the new button the old name
 
 	def setup_buttons(self):
 		self.estop_pb.setCheckable(True)
@@ -58,6 +71,12 @@ class main(QMainWindow):
 		self.power_pb.setCheckable(True)
 		self.power_pb.setEnabled(False)
 		self.power_pb.toggled.connect(self.power_toggle)
+		self.momentary_pb.pressed.connect(self.button_pressed)
+		self.momentary_pb.released.connect(self.button_released)
+		self.toggle_pb.pressed.connect(self.button_toggle_led)
+		self.led_pb.pressed.connect(self.button_toggle_led)
+		self.no_layout_pb.clicked.connect(self.button_toggle_led)
+		self.print_led_buttons_pb.clicked.connect(self.print_led_buttons)
 		self.quit_pb.released.connect(self.close)
 
 	def estop_toggle(self):
@@ -67,12 +86,35 @@ class main(QMainWindow):
 		else:
 			self.estop_pb.led = False
 			self.power_pb.setEnabled(False)
+			self.power_pb.setChecked(False)
 
 	def power_toggle(self):
 		if self.power_pb.isChecked():
 			self.power_pb.led = True
 		else:
 			self.power_pb.led = False
+
+	def button_toggle_led(self):
+		button = self.sender()
+		print(button.property('led'))
+		if hasattr(button, 'led'):
+			button.led = not button.led
+
+	def button_pressed(self):
+		button = self.sender()
+		if hasattr(button, 'led'):
+			button.led = True
+
+	def button_released(self):
+		button = self.sender()
+		if hasattr(button, 'led'):
+			button.led = False
+
+	def print_led_buttons(self):
+		for button in self.findChildren(QPushButton):
+			if hasattr(button, 'led'):
+				print(button.objectName())
+				#print(f'Button Name {getattr(self, button).objectName()}')
 
 app = QApplication(sys.argv)
 gui = main()

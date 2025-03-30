@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
-    <height>300</height>
+    <width>351</width>
+    <height>494</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,34 +15,79 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox">
+    <item row="2" column="1" alignment="Qt::AlignRight|Qt::AlignBottom">
+     <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
-       <string>Machine</string>
+       <string>GUI</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
-        <widget class="QPushButton" name="estop_pb">
+        <widget class="QPushButton" name="quit_pb">
          <property name="text">
-          <string>E Stop</string>
+          <string>Quit</string>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="title">
+       <string>QVBoxLayout</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="1" column="0">
+        <widget class="QPushButton" name="print_led_buttons_pb">
+         <property name="text">
+          <string>Print LED
+Buttons</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="momentary_pb">
+         <property name="text">
+          <string>Momentary</string>
          </property>
          <property name="indicator" stdset="0">
           <bool>true</bool>
          </property>
-         <property name="diameter" stdset="0">
-          <number>10</number>
-         </property>
-         <property name="right_offset" stdset="0">
-          <number>10</number>
-         </property>
-         <property name="top_offset" stdset="0">
-          <number>10</number>
-         </property>
         </widget>
        </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="title">
+       <string>No Layout</string>
+      </property>
+      <widget class="QPushButton" name="no_layout_pb">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>30</y>
+         <width>87</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Toggle
+Button</string>
+       </property>
+       <property name="indicator" stdset="0">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>QGridLayout</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="0">
         <widget class="QPushButton" name="power_pb">
          <property name="enabled">
@@ -68,26 +113,63 @@
          </property>
         </widget>
        </item>
-      </layout>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="title">
-       <string>Info</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_4">
-       <item row="1" column="0">
-        <widget class="QPushButton" name="print_children_pb">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="estop_pb">
          <property name="text">
-          <string>Print Children</string>
+          <string>E Stop</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="indicator" stdset="0">
+          <bool>true</bool>
+         </property>
+         <property name="diameter" stdset="0">
+          <number>15</number>
+         </property>
+         <property name="right_offset" stdset="0">
+          <number>10</number>
+         </property>
+         <property name="top_offset" stdset="0">
+          <number>10</number>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton">
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton_6">
+         <property name="text">
+          <string>PB</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="pushButton_7">
+         <property name="text">
+          <string>PB</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QGroupBox" name="groupBox_5">
+      <property name="title">
+       <string>QVBoxLayout</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton_3">
          <property name="text">
           <string>PushButton</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="toggle_pb">
+         <property name="text">
+          <string>Toggle
+Button</string>
          </property>
          <property name="indicator" stdset="0">
           <bool>true</bool>
@@ -97,43 +179,31 @@
       </layout>
      </widget>
     </item>
-    <item row="1" column="1" alignment="Qt::AlignRight|Qt::AlignBottom">
-     <widget class="QGroupBox" name="groupBox_2">
+    <item row="1" column="0">
+     <widget class="QGroupBox" name="groupBox_6">
       <property name="title">
-       <string>GUI</string>
+       <string>QHBoxLayout</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="0">
-        <widget class="QPushButton" name="quit_pb">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="led_pb">
          <property name="text">
-          <string>Quit</string>
+          <string>PB
+LED</string>
+         </property>
+         <property name="indicator" stdset="0">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="text">
+          <string>PB</string>
          </property>
         </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="groupBox_4">
-      <property name="title">
-       <string>GroupBox</string>
-      </property>
-      <widget class="QPushButton" name="no_layout_pb">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>40</y>
-         <width>87</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>NL</string>
-       </property>
-       <property name="indicator" stdset="0">
-        <bool>true</bool>
-       </property>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -143,7 +213,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>300</width>
+     <width>351</width>
      <height>24</height>
     </rect>
    </property>
