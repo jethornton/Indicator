@@ -6,18 +6,14 @@ from PyQt6.QtWidgets import QPushButton
 class IndicatorButton(QPushButton):
 	_led = False
 
-	def __init__(self, txt, dia, r_offset, t_offset):
+	def __init__(self, **kwargs):
 		super().__init__()
-		#print(diameter)
-		self.setText(txt)
-		self._text = txt
-		self._diameter = dia
-		self._top_offset = t_offset
-		self._right_offset = r_offset
-		#print(f'text {type(self._text)} {self._text}')
-		#print(f'diameter {type(self._diameter)} {self._diameter}')
-		#print(f'top_offset {type(self._top_offset)} {self._top_offset}')
-		#print(f'right_offset {type(self._right_offset)} {self._right_offset}')
+		self.setText(kwargs['text'])
+		self._diameter = kwargs['diameter']
+		self._top_offset = kwargs['top_offset']
+		self._right_offset = kwargs['right_offset']
+		self._on_color = kwargs['on_color']
+		self._off_color = kwargs['off_color']
 
 	def paintEvent(self, event):
 		super().paintEvent(event)
@@ -35,15 +31,15 @@ class IndicatorButton(QPushButton):
 		painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
 
 		if self._led:
-			gradient.setColorAt(1, on_color)
+			gradient.setColorAt(1, self._on_color)
 			painter.setBrush(QBrush(gradient))
-			painter.setPen(on_color)
+			painter.setPen(self._on_color)
 			# Draws the ellipse positioned at center with radii rx and ry.
 			painter.drawEllipse(QPointF(x_center, y_center), self._diameter / 2, self._diameter / 2)
 		else:
-			gradient.setColorAt(1, off_color)
+			gradient.setColorAt(1, self._off_color)
 			painter.setBrush(QBrush(gradient))
-			painter.setPen(off_color)
+			painter.setPen(self._off_color)
 			painter.drawEllipse(QPointF(x_center, y_center), self._diameter / 2, self._diameter / 2)
 
 	def setLed(self, val):

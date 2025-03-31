@@ -7,6 +7,7 @@ sys.dont_write_bytecode = True
 
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton
 from PyQt6.QtWidgets import QGridLayout, QVBoxLayout, QHBoxLayout
+from PyQt6.QtGui import QColor
 from PyQt6 import uic
 
 import led
@@ -28,23 +29,20 @@ class main(QMainWindow):
 	def setup_led_buttons(self):
 		for child in self.findChildren(QPushButton):
 			if child.property('indicator'):
-				name = child.objectName()
-				text = child.text()
-				diameter = child.property('diameter') or 15
-				right_offset = child.property('right_offset') or 5
-				top_offset = child.property('top_offset') or 5
+				prop_dict = {}
+				prop_dict['name'] = child.objectName()
+				prop_dict['text'] = child.text()
+				prop_dict['diameter'] = child.property('diameter') or 15
+				prop_dict['right_offset'] = child.property('right_offset') or 5
+				prop_dict['top_offset'] = child.property('top_offset') or 5
+				prop_dict['on_color'] = child.property('on_color') or QColor(0, 255, 0, 255)
+				prop_dict['off_color'] = child.property('off_color') or QColor(125, 0, 0, 255)
 
-				#print(f'child {child.objectName()}')
-				#print(f'diameter {diameter}')
-				#print(f'right_offset {right_offset}')
-				#print(f'top_offset {top_offset}')
-
-				new_button = led.IndicatorButton(text, diameter, right_offset, top_offset)
+				new_button = led.IndicatorButton(**prop_dict)
 				# determine layout or not
 				layout = child.parent().layout()
 				if layout:
 					index = layout.indexOf(child)
-					#print(f'{child.objectName()} layout {layout}')
 					if index != -1:
 						if isinstance(layout, QGridLayout):
 							row, column, rowspan, columnspan = layout.getItemPosition(index)
@@ -54,16 +52,12 @@ class main(QMainWindow):
 							layout.insertWidget(index, new_button)
 				else:
 					geometry = child.geometry()
-					#print(f'geometry of {name} {geometry}')
 					child_parent = child.parent()
-					#print(f'child_parent of {name} {child_parent}')
 					new_button.setParent(child_parent)
 					new_button.setGeometry(geometry)
-					#new_button.show()
-					#print(f'{child.objectName()} geometry {geometry}')
 				child.deleteLater()
-				new_button.setObjectName(name)
-				setattr(self, name, new_button) # give the new button the old name
+				new_button.setObjectName(prop_dict['name'])
+				setattr(self, prop_dict['name'], new_button) # give the new button the old name
 
 	def setup_buttons(self):
 		self.estop_pb.setCheckable(True)
@@ -96,7 +90,6 @@ class main(QMainWindow):
 
 	def button_toggle_led(self):
 		button = self.sender()
-		print(button.property('led'))
 		if hasattr(button, 'led'):
 			button.led = not button.led
 
@@ -114,7 +107,6 @@ class main(QMainWindow):
 		for button in self.findChildren(QPushButton):
 			if hasattr(button, 'led'):
 				print(button.objectName())
-				#print(f'Button Name {getattr(self, button).objectName()}')
 
 app = QApplication(sys.argv)
 gui = main()

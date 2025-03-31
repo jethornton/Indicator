@@ -1,0 +1,12 @@
+Indicator buttons can have the following dynamic properties
+
+diameter type Int
+right_offset type Int
+top_offset type Int
+on_color type Color
+off_color type Color
+
+Offsets are from the edge of the button so if you have a border add the width
+to your offsets.
+
+Offsets must be 1 or more, an offset of 0 gets the default offset

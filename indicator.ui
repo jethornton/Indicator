@@ -133,6 +133,20 @@ Button</string>
          <property name="top_offset" stdset="0">
           <number>10</number>
          </property>
+         <property name="on_color" stdset="0">
+          <color>
+           <red>224</red>
+           <green>27</green>
+           <blue>36</blue>
+          </color>
+         </property>
+         <property name="off_color" stdset="0">
+          <color>
+           <red>236</red>
+           <green>255</green>
+           <blue>0</blue>
+          </color>
+         </property>
         </widget>
        </item>
        <item row="0" column="1">
@@ -193,6 +207,12 @@ LED</string>
          </property>
          <property name="indicator" stdset="0">
           <bool>true</bool>
+         </property>
+         <property name="top_offset" stdset="0">
+          <number>1</number>
+         </property>
+         <property name="right_offset" stdset="0">
+          <number>1</number>
          </property>
         </widget>
        </item>
